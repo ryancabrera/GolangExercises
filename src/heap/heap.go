@@ -17,8 +17,8 @@ func (m *MinIntHeap) getRightChildIndex(parentIndex int) int { return 2*parentIn
 func (m *MinIntHeap) getParentIndex(childIndex int) int      { return (childIndex - 1) / 2 }
 
 //Operations to check for existence of nodes
-func (m *MinIntHeap) hasLeftChildIndex(index int) bool  { return m.getLeftChildIndex(index) < size }
-func (m *MinIntHeap) hasRightChildIndex(index int) bool { return m.getRightChildIndex(index) < size }
+func (m *MinIntHeap) hasLeftChildIndex(index int) bool  { return m.getLeftChildIndex(index) < m.size }
+func (m *MinIntHeap) hasRightChildIndex(index int) bool { return m.getRightChildIndex(index) < m.size }
 func (m *MinIntHeap) hasParent(index int) bool          { return m.getParentIndex(index) >= 0 }
 
 //Operations to get the Node
