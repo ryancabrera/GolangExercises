@@ -109,5 +109,4 @@ func Main() {
 	for _, number := range heap.items {
 		fmt.Println("Number is: ", number)
 	}
-
 }
