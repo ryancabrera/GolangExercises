@@ -5,6 +5,8 @@
 
 package heap
 
+import "fmt"
+
 type MinIntHeap struct {
 	capacity int
 	size     int
@@ -31,9 +33,75 @@ func (m *MinIntHeap) swap(indexOne int, indexTwo int) {
 	m.items[indexOne], m.items[indexTwo] = m.items[indexTwo], m.items[indexOne]
 }
 
-//WIP TODO: Use slice functions to double capaciy of array
+//double capacity of array
 func (m *MinIntHeap) ensureExtraCapacity() {
 	if m.size == m.capacity {
-		//I'll have to take copy the values of the existing array into a new array, then point the old array to the new array, then clean up the old array
+		indexBeforeDoubling := len(m.items)
+		m.items = append(m.items, make([]int, indexBeforeDoubling)...)
+		m.items = m.items[:indexBeforeDoubling]
+		m.capacity *= 2
+	}
+}
+
+//Swap values at index
+func (m *MinIntHeap) peek() int {
+	if m.size == 0 {
+		panic("Illegal State, Size is zero?")
+	}
+	return m.items[0]
+}
+
+func (m *MinIntHeap) poll() int {
+	item := m.items[0]
+	m.items[0] = m.items[m.size-1]
+	m.size -= 1
+	m.heapifyDown()
+	return item
+}
+
+func (m *MinIntHeap) add(item int) {
+	m.ensureExtraCapacity()
+	m.items[m.size] = item
+	m.size += 1
+	m.heapifyUp()
+}
+
+func (m *MinIntHeap) heapifyUp() {
+	index := m.size - 1
+	for m.hasParent(index) && m.parent(index) > m.items[index] {
+		m.swap(m.getParentIndex(index), index)
+		index = m.getParentIndex(index)
+	}
+}
+
+func (m *MinIntHeap) heapifyDown() {
+	index := 0
+	for m.hasLeftChildIndex(index) {
+		smallerChildIndex := m.getLeftChildIndex(index)
+		if m.hasRightChildIndex(index) && m.rightChild(index) < m.leftChild(index) {
+			smallerChildIndex = m.getRightChildIndex(index)
+		}
+
+		if m.items[index] < m.items[smallerChildIndex] {
+			break
+		} else {
+			m.swap(index, smallerChildIndex)
+		}
+		index = smallerChildIndex
+	}
+}
+
+func Main() {
+	inputArray := []int{6, 5, 3, 7, 2, 8}
+	heap := MinIntHeap{
+		capacity: 2,
+		size:     2,
+		items:    inputArray,
+	}
+
+	heap.heapifyDown()
+
+	for _, number := range heap.items {
+		fmt.Println("Number is: ", number)
 	}
 }
