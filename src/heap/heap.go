@@ -21,7 +21,7 @@ func (m *MinIntHeap) hasLeftChildIndex(index int) bool  { return m.getLeftChildI
 func (m *MinIntHeap) hasRightChildIndex(index int) bool { return m.getRightChildIndex(index) < m.size }
 func (m *MinIntHeap) hasParent(index int) bool          { return m.getParentIndex(index) >= 0 }
 
-//Operations to get the Node
+//Operations to get the Node Values
 func (m *MinIntHeap) leftChild(index int) int  { return m.items[m.getLeftChildIndex(index)] }
 func (m *MinIntHeap) rightChild(index int) int { return m.items[m.getRightChildIndex(index)] }
 func (m *MinIntHeap) parent(index int) int     { return m.items[m.getParentIndex(index)] }
@@ -34,7 +34,6 @@ func (m *MinIntHeap) swap(indexOne int, indexTwo int) {
 //WIP TODO: Use slice functions to double capaciy of array
 func (m *MinIntHeap) ensureExtraCapacity() {
 	if m.size == m.capacity {
-
+		//I'll have to take copy the values of the existing array into a new array, then point the old array to the new array, then clean up the old array
 	}
-
 }

@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"rcabrera/exercises/src/helloworld"
+	"rcabrera/exercises/src/slices"
 )
 
 func main() {
-	fmt.Println(helloworld.Helloworld())
+	slices.Main()
 }
