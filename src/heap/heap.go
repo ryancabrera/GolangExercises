@@ -35,13 +35,14 @@ func (m *MinIntHeap) swap(indexOne int, indexTwo int) {
 	m.items[indexOne], m.items[indexTwo] = m.items[indexTwo], m.items[indexOne]
 }
 
-//double capacity of array
+//double capacity of array EDIT: SLICES WILL DOUBLE CAPACITY AS THEY FILL
+/*
 func (m *MinIntHeap) ensureExtraCapacity() {
 	if m.size == m.capacity {
 		m.items = append(m.items, make([]int, len(m.items))...)
 		m.capacity *= 2
 	}
-}
+}*/
 
 //Swap values at index
 func (m *MinIntHeap) peek() int {
@@ -61,8 +62,8 @@ func (m *MinIntHeap) poll() int {
 
 func (m *MinIntHeap) add(item int) {
 
-	m.ensureExtraCapacity()
-	m.items[m.size] = item
+	//m.ensureExtraCapacity()
+	m.items = append(m.items, item)
 	m.size += 1
 	m.heapifyUp()
 }
