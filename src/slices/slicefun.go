@@ -40,11 +40,16 @@ func printLen() {
 	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
 
 	fmt.Printf("Clearing Trailing Values\n")
-	b = b[:indexBeforeDoubling]
+	//b = b[:indexBeforeDoubling]
 	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
 	b[indexBeforeDoubling] = 22
 
 	b = append(b[:0], append(make([]int, len(b)), b[0:]...)...)
-	//fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
+	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
+
+	arr1 := [9]int{1, 2, 3}
+	fmt.Printf("len=%d cap=%d %v\n", len(arr1), cap(arr1), arr1)
+	arr1[len(arr1)-1] = 200
+	fmt.Printf("len=%d cap=%d %v\n", len(arr1), cap(arr1), arr1)
 
 }

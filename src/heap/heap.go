@@ -38,9 +38,7 @@ func (m *MinIntHeap) swap(indexOne int, indexTwo int) {
 //double capacity of array
 func (m *MinIntHeap) ensureExtraCapacity() {
 	if m.size == m.capacity {
-		indexBeforeDoubling := len(m.items)
-		m.items = append(m.items, make([]int, indexBeforeDoubling)...)
-		m.items = m.items[:indexBeforeDoubling]
+		m.items = append(m.items, make([]int, len(m.items))...)
 		m.capacity *= 2
 	}
 }
@@ -103,21 +101,14 @@ func makeHeapFromArray(initArray []int) MinIntHeap {
 }
 
 func Main() {
-	inputArray := []int{7, 2, 8}
+	inputArray := []int{6, 5, 7, 2, 8}
 
 	fmt.Println("Size of Array is ", cap(inputArray))
 
-	heap := makeHeapFromArray([]int{6, 5})
-
-	/*
-		for _, value := range inputArray{
-			heap.add(value)
-		}*/
-
-	heap.add(3)
-	heap.add(7)
-	heap.add(2)
-	heap.add(8)
+	heap := makeHeapFromArray([]int{0})
+	for _, value := range inputArray {
+		heap.add(value)
+	}
 
 	for _, number := range heap.items {
 		fmt.Println("Number is: ", number)
