@@ -2,6 +2,8 @@
 // https://www.youtube.com/watch?v=t0Cq6tVNRBA
 // https://golangbyexample.com/heap-in-golang/
 // https://blog.golang.org/slices
+//Bug with Zero values
+//ToDo: Implement constructor like mechanism to ensure size/capacity are initialized correectly when items is init
 
 package heap
 
@@ -60,6 +62,7 @@ func (m *MinIntHeap) poll() int {
 }
 
 func (m *MinIntHeap) add(item int) {
+
 	m.ensureExtraCapacity()
 	m.items[m.size] = item
 	m.size += 1
@@ -91,21 +94,31 @@ func (m *MinIntHeap) heapifyDown() {
 	}
 }
 
+func makeHeapFromArray(initArray []int) MinIntHeap {
+	return MinIntHeap{
+		capacity: cap(initArray),
+		size:     len(initArray),
+		items:    initArray,
+	}
+}
+
 func Main() {
-	inputArray := []int{6, 5, 3, 7, 2, 8}
-	heap := MinIntHeap{
-		capacity: 2,
-		size:     2,
-		items:    inputArray,
-	}
+	inputArray := []int{7, 2, 8}
 
-	heap.heapifyDown()
+	fmt.Println("Size of Array is ", cap(inputArray))
 
-	for _, number := range heap.items {
-		fmt.Println("Number is: ", number)
-	}
+	heap := makeHeapFromArray([]int{6, 5})
 
-	heap.heapifyDown()
+	/*
+		for _, value := range inputArray{
+			heap.add(value)
+		}*/
+
+	heap.add(3)
+	heap.add(7)
+	heap.add(2)
+	heap.add(8)
+
 	for _, number := range heap.items {
 		fmt.Println("Number is: ", number)
 	}

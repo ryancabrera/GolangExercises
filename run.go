@@ -1,9 +1,9 @@
 package main
 
 import (
-	"rcabrera/exercises/src/heap"
+	"rcabrera/exercises/src/slices"
 )
 
 func main() {
-	heap.Main()
+	slices.Main()
 }

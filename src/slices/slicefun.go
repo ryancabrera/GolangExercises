@@ -28,7 +28,7 @@ func printSlice(s []int) {
 func printLen() {
 	fmt.Printf("Expansion vs Extension exercises\n")
 
-	b := []int{0, 1, 2, 3}
+	b := []int{4, 5, 6, 7}
 	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
 
 	b = b[:cap(b)]
@@ -42,8 +42,9 @@ func printLen() {
 	fmt.Printf("Clearing Trailing Values\n")
 	b = b[:indexBeforeDoubling]
 	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
+	b[indexBeforeDoubling] = 22
 
 	b = append(b[:0], append(make([]int, len(b)), b[0:]...)...)
-	fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
+	//fmt.Printf("len=%d cap=%d %v\n", len(b), cap(b), b)
 
 }
