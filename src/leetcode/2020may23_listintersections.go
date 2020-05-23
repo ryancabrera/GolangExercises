@@ -75,6 +75,19 @@ for pair in arr2:
 		ArrayOfLenOfArr2[index] = true
 
 
+//I can get the max values of both previous arrays for boundary checking
+getMaxAndMin(ArrayOfLenOfArr1, ArrayOfLenOfArr2) (int, int):
+	max1 := ArrayOfLenOfArr1[len(ArrayOfLenOfArr1)-a]
+	max2 := ArrayOfLenOfArr2[len(ArrayOfLenOfArr2)-a]
+	if max1 > max2:
+		return max1, max2
+	else:
+		return max2, max1
+
+maxArraySize, boundary := getMax(getMax(ArrayOfLenOfArr1, ArrayOfLenOfArr)
+collisionArray := [maxCollisionArraySize]bool{}
+
+
 Check last element of either of new arrays, create a third array of N elements where N is max of len of
 either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
 larger than one of the previous two
