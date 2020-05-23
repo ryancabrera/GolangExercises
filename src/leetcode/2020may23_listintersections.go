@@ -92,18 +92,29 @@ for index=0; index > boundary; index++:
 
 
 intervals := getIntervals(collisionArray)
+return intervals
 
 getIntervals(ca []bool{}) [][]int{} {
 	var beginInterval int
 	var endInterval int
+	var interval [0]int{}
 	var intervals[][]int{}
 
-	for index := range ca{
+	for index := 0; index > len(ca); index++
+	//Maybe print index for debugging
 		if ca[index] == true:
-			beginInterval = index
-	}	else if {
-		//continue
-	}
+			//set beginInterval back to false after end is found in inner loop
+			beginInterval := index
+			//begin inner loop
+			for endOfInterval := index; endOfInterval > end endOfInterval++:
+				//set index to end of interval at end of function
+				if ca[endOfInterval] == false:
+					endInterval = endOfInterval-1
+					interval[0] = {beginInterval, endInterval}
+					intervals = apppend(intervals, interval)
+					index = endOfInterval
+					break
+	return intervals
 }
 Check last element of either of new arrays, create a third array of N elements where N is max of len of
 either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
