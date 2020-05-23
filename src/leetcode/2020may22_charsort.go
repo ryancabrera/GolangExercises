@@ -6,7 +6,6 @@ import (
 	"strings"
 )
 
-type sortRunes []rune
 type charMap struct {
 	Key   string
 	Value int
@@ -14,25 +13,19 @@ type charMap struct {
 type charMapList []charMap
 
 func Main() {
-	exampleInput1 := StripSpace("Aabb")
-
+	//exampleInput1 := StripSpace("Aabb")
+	exampleInput1 := "AAaaabbb  b a  baba asd"
 	m := strMap(exampleInput1)
-	for key, element := range m {
-		fmt.Println(key, element)
-	}
-	fmt.Println(m)
-
-	keys, values := SliceKeysAndValues(m)
-
-	s := []rune(exampleInput1)
-	sort.Sort(sortRunes(s))
-	fmt.Println(string(s))
-
-	fmt.Println(keys, values)
-
 	srtd := rankByWordCount(m)
-	fmt.Println(srtd)
 
+	uncatOutput := []string{}
+
+	for _, element := range srtd {
+		for i := 0; i < element.Value; i++ {
+			uncatOutput = append(uncatOutput, element.Key)
+		}
+	}
+	fmt.Println(strings.Join(uncatOutput, ""))
 }
 
 func (p charMapList) Len() int           { return len(p) }
@@ -50,28 +43,6 @@ func rankByWordCount(wordFrequencies map[string]int) charMapList {
 	return pl
 }
 
-func (s sortRunes) Less(i, j int) bool {
-	return s[i] < s[j]
-}
-
-func (s sortRunes) Len() int {
-	return len(s)
-}
-func (s sortRunes) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
-}
-
-func SliceKeysAndValues(stringmap map[string]int) ([]string, []int) {
-	keys := make([]string, 0, len(stringmap))
-	values := make([]int, 0, len(stringmap))
-
-	for k, v := range stringmap {
-		keys = append(keys, k)
-		values = append(values, v)
-	}
-	return keys, values
-}
-
 func StripSpace(inputString string) string {
 	return strings.Join(strings.Fields(inputString), "")
 }
@@ -79,7 +50,6 @@ func StripSpace(inputString string) string {
 func strMap(inputString string) map[string]int {
 	runifiedInput := []rune(inputString)
 	m := make(map[string]int)
-	fmt.Println(m)
 	for i := 0; i < len(runifiedInput); i++ {
 		_, key := m[string(runifiedInput[i])]
 		if key {
