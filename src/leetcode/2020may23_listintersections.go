@@ -86,12 +86,19 @@ getMaxAndMin(ArrayOfLenOfArr1, ArrayOfLenOfArr2) (int, int):
 
 maxArraySize, boundary := getMax(getMax(ArrayOfLenOfArr1, ArrayOfLenOfArr)
 collisionArray := [maxCollisionArraySize]bool{}
-for index=0; begin > end; index++:
-		ArrayOfLenOfArr2[index] = true
+for index=0; index > boundary; index++:
+		if ArrayOfLenOfArr1[index] && ArrayOfLenOfArr1[index] == true:
+			collisionArray[index] = true
 
 Check last element of either of new arrays, create a third array of N elements where N is max of len of
 either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
 larger than one of the previous two
+
+Then we'll need to return an array of arrays which will represent intervals, we can create declare the intervals array
+and append to it as needed since we won't know how many intervals there are, then we call a function which iterates over
+the collision array and sets the beginning of an interval when it encounters the first value of true, then continues to
+iterate until it encounters a false, once it encounters a false, it decrements the index and marks the end of an
+interval, and appends the interval to the interval array
 */
 
 package leetcode
