@@ -90,15 +90,31 @@ for index=0; index > boundary; index++:
 		if ArrayOfLenOfArr1[index] && ArrayOfLenOfArr1[index] == true:
 			collisionArray[index] = true
 
+
+intervals := getIntervals(collisionArray)
+
+getIntervals(ca []bool{}) [][]int{} {
+	var beginInterval int
+	var endInterval int
+	var intervals[][]int{}
+
+	for index := range ca{
+		if ca[index] == true:
+			beginInterval = index
+	}	else if {
+		//continue
+	}
+}
 Check last element of either of new arrays, create a third array of N elements where N is max of len of
 either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
 larger than one of the previous two
 
 Then we'll need to return an array of arrays which will represent intervals, we can create declare the intervals array
 and append to it as needed since we won't know how many intervals there are, then we call a function which iterates over
-the collision array and sets the beginning of an interval when it encounters the first value of true, then continues to
-iterate until it encounters a false, once it encounters a false, it decrements the index and marks the end of an
-interval, and appends the interval to the interval array
+the collision array and sets the beginning of an interval when it encounters the first value of true, then continues over
+a second iteration which breaks when it encounters a false, once it encounters a false, it decrements the index and marks
+the end of the inner loop, which the outer loop should jump to the index found by the inner loop, and appends the interval
+to the interval array
 */
 
 package leetcode
