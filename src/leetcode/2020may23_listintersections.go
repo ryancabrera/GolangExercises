@@ -135,31 +135,35 @@ import (
 )
 
 func intervalIntersection(A [][]int, B [][]int) [][]int {
-	for index, element := range A {
-		fmt.Println("Index: ", index, "\tElement: ", element)
-		fmt.Println(element[0])
-	}
+	/*
+		for index, element := range A {
+			fmt.Println("Index: ", index, "\tElement: ", element)
+			fmt.Println(element[0])
+		}*/
 
-	arrA := getArrayLen(A)
-	arrB := getArrayLen(B)
+	arrA := generateBooleanArray(A)
+	arrB := generateBooleanArray(B)
+	fmt.Println(arrA, "\n", arrB)
 
 	return A
 }
 
-func getArrayLen(arr1 [][]int) []bool{
+func generateBooleanArray(arr1 [][]int) []bool {
 	arrLen := arr1[len(arr1)-1][1]
 	ArrayOfLenOfArr1 := make([]bool, arrLen)
 
 	for index := range arr1 {
 		beginning := arr1[index][0]
 		end := arr1[index][1]
-		for ; beginning > end; beginning++{
+		for ; beginning < end; beginning++ {
+			fmt.Println("Beginning: ", beginning, " End: ", end)
 			ArrayOfLenOfArr1[beginning] = true
 		}
 	}
 	return ArrayOfLenOfArr1
 }
 
+/*
 Repeat with second set of coordinates
 ArrayOfLenOfArr2 := [arr2[len(arr1)-1][1]]bool{}
 for pair in arr2:
@@ -210,6 +214,7 @@ index = endOfInterval
 break
 return intervals
 }
+*/
 
 func Main23() {
 	intervalA := [][]int{{0, 2}, {5, 10}, {13, 23}, {24, 25}}
