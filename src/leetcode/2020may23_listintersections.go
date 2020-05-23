@@ -143,8 +143,13 @@ func intervalIntersection(A [][]int, B [][]int) [][]int {
 
 	arrA := generateBooleanArray(A)
 	arrB := generateBooleanArray(B)
-	fmt.Println(arrA, "\n", arrB)
 
+	for i := range arrA {
+		fmt.Println("Num: ", i, " val: ", arrA[i])
+
+	}
+	fmt.Println(arrA)
+	fmt.Println(arrB)
 	return A
 }
 
@@ -155,8 +160,12 @@ func generateBooleanArray(arr1 [][]int) []bool {
 	for index := range arr1 {
 		beginning := arr1[index][0]
 		end := arr1[index][1]
-		for ; beginning < end; beginning++ {
-			fmt.Println("Beginning: ", beginning, " End: ", end)
+		if beginning == arrLen-1 {
+			//fmt.Println("Beginning: ", beginning, " End: ", end)
+			break
+		}
+		for ; beginning <= end; beginning++ {
+			//fmt.Println("Beginning: ", beginning, " End: ", end)
 			ArrayOfLenOfArr1[beginning] = true
 		}
 	}
