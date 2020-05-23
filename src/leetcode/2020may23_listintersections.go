@@ -63,7 +63,7 @@ ArrayOfLenOfArr1 := [arr1[len(arr1)-1][1]]bool{}
 for pair in arr1:
 	beginning = arr1[0]
 	end = arr1 [1]
-	for index=beginning; begin > end; index++:
+	for index=beginning; index > end; index++:
 		ArrayOfLenOfArr1[index] = true
 
 Repeat with second set of coordinates
@@ -71,7 +71,7 @@ ArrayOfLenOfArr2 := [arr2[len(arr1)-1][1]]bool{}
 for pair in arr2:
 	beginning = arr2[0]
 	end = arr2[1]
-	for index=beginning; begin > end; index++:
+	for index=beginning; index > end; index++:
 		ArrayOfLenOfArr2[index] = true
 
 
@@ -86,7 +86,8 @@ getMaxAndMin(ArrayOfLenOfArr1, ArrayOfLenOfArr2) (int, int):
 
 maxArraySize, boundary := getMax(getMax(ArrayOfLenOfArr1, ArrayOfLenOfArr)
 collisionArray := [maxCollisionArraySize]bool{}
-
+for index=0; begin > end; index++:
+		ArrayOfLenOfArr2[index] = true
 
 Check last element of either of new arrays, create a third array of N elements where N is max of len of
 either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
