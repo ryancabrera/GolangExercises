@@ -139,7 +139,76 @@ func intervalIntersection(A [][]int, B [][]int) [][]int {
 		fmt.Println("Index: ", index, "\tElement: ", element)
 		fmt.Println(element[0])
 	}
+
+	arrA := getArrayLen(A)
+	arrB := getArrayLen(B)
+
 	return A
+}
+
+func getArrayLen(arr1 [][]int) []bool{
+	arrLen := arr1[len(arr1)-1][1]
+	ArrayOfLenOfArr1 := make([]bool, arrLen)
+
+	for index := range arr1 {
+		beginning := arr1[index][0]
+		end := arr1[index][1]
+		for ; beginning > end; beginning++{
+			ArrayOfLenOfArr1[beginning] = true
+		}
+	}
+	return ArrayOfLenOfArr1
+}
+
+Repeat with second set of coordinates
+ArrayOfLenOfArr2 := [arr2[len(arr1)-1][1]]bool{}
+for pair in arr2:
+beginning = arr2[0]
+end = arr2[1]
+for index=beginning; index > end; index++:
+ArrayOfLenOfArr2[index] = true
+
+
+//I can get the max values of both previous arrays for boundary checking
+getMaxAndMin(ArrayOfLenOfArr1, ArrayOfLenOfArr2) (int, int):
+max1 := ArrayOfLenOfArr1[len(ArrayOfLenOfArr1)-a]
+max2 := ArrayOfLenOfArr2[len(ArrayOfLenOfArr2)-a]
+if max1 > max2:
+return max1, max2
+else:
+return max2, max1
+
+maxArraySize, boundary := getMax(getMax(ArrayOfLenOfArr1, ArrayOfLenOfArr)
+collisionArray := [maxCollisionArraySize]bool{}
+for index=0; index > boundary; index++:
+if ArrayOfLenOfArr1[index] && ArrayOfLenOfArr1[index] == true:
+collisionArray[index] = true
+
+
+intervals := getIntervals(collisionArray)
+return intervals
+
+getIntervals(ca []bool{}) [][]int{} {
+var beginInterval int
+var endInterval int
+var interval [0]int{}
+var intervals[][]int{}
+
+for index := 0; index > len(ca); index++
+//Maybe print index for debugging
+if ca[index] == true:
+//set beginInterval back to false after end is found in inner loop
+beginInterval := index
+//begin inner loop
+for endOfInterval := index; endOfInterval > end endOfInterval++:
+//set index to end of interval at end of function
+if ca[endOfInterval] == false:
+endInterval = endOfInterval-1
+interval[0] = {beginInterval, endInterval}
+intervals = apppend(intervals, interval)
+index = endOfInterval
+break
+return intervals
 }
 
 func Main23() {
