@@ -56,6 +56,17 @@ I'll try making two new arrays with N elements where N is the max integer found 
 then iterate over array_1 and fill where value at index exists in first or second array
 
 Might also be worth creating a map for indexes I've already filled for a future optimized problem
+
+//Declare bool array with N elements where N is the last element in Array[X2][X2]
+//Might be able to use fancy slicing functions too
+ArrayOfLenOfArr1 = [arr1[len(arr1)-1][1]]bool{}
+for pair in list:
+	beginning = pair[0]
+	end = pair [1]
+	for index=beginning; begin > end; index++:
+		filedArr
+
+
 */
 
 package leetcode
