@@ -58,15 +58,19 @@ then iterate over array_1 and fill where value at index exists in first or secon
 Might also be worth creating a map for indexes I've already filled for a future optimized problem
 
 //Declare bool array with N elements where N is the last element in Array[X2][X2]
-//Might be able to use fancy slicing functions too
-ArrayOfLenOfArr1 = [arr1[len(arr1)-1][1]]bool{}
-for pair in list:
-	beginning = pair[0]
-	end = pair [1]
+//Might be able to use fancy slicing functions too optimize in future
+ArrayOfLenOfArr1 := [arr1[len(arr1)-1][1]]bool{}
+for pair in arr1:
+	beginning = arr1[0]
+	end = arr1 [1]
 	for index=beginning; begin > end; index++:
-		filedArr
+		ArrayOfLenOfArr1[index] = true
 
+Repeat with second set of coordinates
 
+Check last element of either of new arrays, create a third array of N elements where N is max of len of
+either of the previous two, iterate over arrays but be careful to check bounds since 3rd array may be
+larger than one of the previous two
 */
 
 package leetcode
