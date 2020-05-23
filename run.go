@@ -1,9 +1,9 @@
 package main
 
 import (
-	"rcabrera/exercises/src/heap"
+	"rcabrera/exercises/src/leetcode"
 )
 
 func main() {
-	heap.Main()
+	leetcode.Main()
 }
