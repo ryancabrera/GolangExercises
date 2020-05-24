@@ -54,10 +54,10 @@ func getIntervals(ca []bool) [][]int {
 	var intervals [][]int
 	var started bool
 
-	for index := 0; index < len(ca)-1; index++ {
+	for index := 0; index < len(ca); index++ {
 		if !started && ca[index] {
 			started = true
-			beginInterval = index
+			beginInterval += 1
 		} else if started && !ca[index] {
 			innerInterval := [][]int{{beginInterval, index - 1}}
 			intervals = append(intervals, innerInterval...)
