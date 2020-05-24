@@ -7,19 +7,23 @@ import (
 func intervalIntersection(A [][]int, B [][]int) [][]int {
 	arrA := generateBooleanArray(A)
 	arrB := generateBooleanArray(B)
+	/*
+		for i := range arrA {
+			fmt.Println("Num: ", i, " val: ", arrA[i])
+
+		}*/
 
 	maxArraySize, boundary := getMaxAndMin(arrA, arrB)
 	collisionArray := make([]bool, maxArraySize)
+	//fmt.Println("Smaller Array has: ", maxArraySize, " Smaller Array has:  ", boundary)
 	for index := 0; index < boundary; index++ {
 		if arrA[index] && arrB[index] == true {
 			collisionArray[index] = true
 		}
 	}
-
-	ival := getIntervals(collisionArray)
-	fmt.Println(ival)
-
-	return ival
+	intervals := getIntervals(collisionArray)
+	fmt.Println(intervals)
+	return intervals
 }
 
 func generateBooleanArray(arr1 [][]int) []bool {
@@ -55,10 +59,12 @@ func getIntervals(ca []bool) [][]int {
 	var started bool
 
 	for index := 0; index < len(ca); index++ {
+		//fmt.Println(index, ca[index])
 		if !started && ca[index] {
 			started = true
-			beginInterval += 1
+			beginInterval = index
 		} else if started && !ca[index] {
+			started = false
 			innerInterval := [][]int{{beginInterval, index - 1}}
 			intervals = append(intervals, innerInterval...)
 		}
@@ -73,6 +79,7 @@ func getIntervals(ca []bool) [][]int {
 func Main23() {
 	intervalA := [][]int{{0, 2}, {5, 10}, {13, 23}, {24, 25}}
 	intervalB := [][]int{{1, 5}, {8, 12}, {15, 24}, {25, 26}}
+
 	output := intervalIntersection(intervalA, intervalB)
 	fmt.Println(output)
 }
