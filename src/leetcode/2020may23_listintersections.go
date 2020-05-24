@@ -148,9 +148,23 @@ func intervalIntersection(A [][]int, B [][]int) [][]int {
 		fmt.Println("Num: ", i, " val: ", arrA[i])
 
 	}
-	fmt.Println(arrA)
-	fmt.Println(arrB)
-	return A
+
+	maxArraySize, boundary := getMaxAndMin(arrA, arrB)
+	collisionArray := make([]bool, maxArraySize)
+	fmt.Println("Smaller Array has: ", maxArraySize, " Smaller Array has:  ", boundary)
+	for index:=0; index < boundary; index++ {
+		if arrA[index] && arrB[index] == true {
+			collisionArray[index] = true
+		}
+	}
+
+	fmt.Println(collisionArray)
+
+	intervals := getIntervals(collisionArray)
+	fmt.Println(len(arrA))
+	fmt.Println(len(arrB))
+	fmt.Println(intervals)
+	return intervals
 }
 
 func generateBooleanArray(arr1 [][]int) []bool {
@@ -172,6 +186,138 @@ func generateBooleanArray(arr1 [][]int) []bool {
 	return ArrayOfLenOfArr1
 }
 
+func getMaxAndMin(ArrayOfLenOfArr1 []bool, ArrayOfLenOfArr2 []bool) (int, int){
+	max1 := len(ArrayOfLenOfArr1)-1
+	max2 := len(ArrayOfLenOfArr2)-1
+	if max1 > max2 {
+		return max1, max2
+	} else {
+		return max2, max1
+	}
+}
+
+/*
+func intersection(a []bool, b []bool) (inter []string) {
+	// interacting on the smallest list first can potentailly be faster...but not by much, worse case is the same
+	low, high := a, b
+	if len(a) > len(b) {
+		low = b
+		high = a
+	}
+
+	done := false
+	for i, l := range low {
+		for j, h := range high {
+			// get future index values
+			f1 := i + 1
+			f2 := j + 1
+			if l == h {
+				inter = append(inter, h)
+				if f1 < len(low) && f2 < len(high) {
+					// if the future values aren't the same then that's the end of the intersection
+					if low[f1] != high[f2] {
+						done = true
+					}
+				}
+				// we don't want to interate on the entire list everytime, so remove the parts we already looped on will make it faster each pass
+				high = high[:j+copy(high[j:], high[j+1:])]
+				break
+			}
+		}
+		// nothing in the future so we are done
+		if done {
+			break
+		}
+	}
+	return
+}*/
+
+func getIntervals(ca []bool) [][]int {
+	beginInterval := 0
+	endInterval := 0
+	interval := make([]int,2)
+	var intervals [][]int
+	//var started bool
+
+	for index := 0; index < len(ca)-1; index++ {
+		started := index
+		for ca[jindex] == true &&
+	}
+		for index := 0; index < len(ca)-1; index++ {
+		if ca[index] == true {
+			beginInterval += 1
+			for jindex := index; jindex < len(ca)-1; jindex++{
+				if ca[jindex] == true{
+					continue
+				} else if ca[jindex] == false {
+					endInterval = jindex - 1
+					interval[0], interval[1] = beginInterval, endInterval
+					intervals = append(intervals, interval)
+					break
+				}
+			}
+		}
+	}
+	return intervals
+
+		/*
+		for index := 0; index < len(ca)-1; index++ {
+			if ca[index] == true && started == false && index != len(ca)-1 {
+				started = true
+				beginInterval += 1
+				endInterval += 1
+			} else if ca[index] == true && started == false && index == len(ca)-1{
+				endInterval = index
+				interval[0], interval[1] = beginInterval, endInterval
+				intervals = append(intervals, interval)
+			} else if ca[index] == true && started == true {
+				endInterval += 1
+			} else if ca[index] == false && started == true {
+				interval[0], interval[1] = beginInterval, endInterval
+				intervals = append(intervals, interval)
+				started = false
+			} else if ca[index] == false && started == false {
+				continue
+			}
+
+		}/*
+		return intervals
+			/*
+			for index := 0; index < len(ca); index++ {
+			if ca[index] == true {
+				started = true
+				beginInterval = index
+				fmt.Println(beginInterval)
+				for j := beginInterval; ca[j] == false; j++{
+					if ca[j] == false{
+						endInterval = j-1
+						interval[0], interval[1] = beginInterval, endInterval
+						intervals = append(intervals, interval)
+						fmt.Println(beginInterval, endInterval)
+					}
+				}
+			}/*
+		}
+
+		/*
+		for index := 0; index < len(ca); index++ {
+			fmt.Println(index, ca[index])
+			if ca[index] == true {
+				beginInterval = index
+				for endOfInterval := index; beginInterval > endInterval; endOfInterval++ {
+					//fmt.Println(ca[endOfInterval])
+					if ca[endOfInterval] == false {
+						endInterval = endOfInterval - 1
+						interval[0], interval[1] = beginInterval, endInterval
+						intervals = append(intervals, interval)
+						index = endOfInterval
+						break
+					}
+				}
+			}
+		}*/
+}
+
 /*
 Repeat with second set of coordinates
 ArrayOfLenOfArr2 := [arr2[len(arr1)-1][1]]bool{}
@@ -191,6 +337,8 @@ return max1, max2
 else:
 return max2, max1
 
+
+//Get Max array size and boundary
 maxArraySize, boundary := getMax(getMax(ArrayOfLenOfArr1, ArrayOfLenOfArr)
 collisionArray := [maxCollisionArraySize]bool{}
 for index=0; index > boundary; index++:
