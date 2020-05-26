@@ -4,52 +4,55 @@ import (
 	"fmt"
 )
 
-func intervalIntersection(A [][]int, B [][]int) [][]int {
-	arrA := generateBooleanArray(A)
-	arrB := generateBooleanArray(B)
-	/*
-		for i := range arrA {
-			fmt.Println("Num: ", i, " val: ", arrA[i])
+func iis(A [][]int, B [][]int) [][]int {
 
-		}*/
+	maxArraySize := getMaxArraySize(A, B)
+	arrA := generateBooleanArray(A, maxArraySize)
+	arrB := generateBooleanArray(B, maxArraySize)
 
-	maxArraySize, boundary := getMaxAndMin(arrA, arrB)
 	collisionArray := make([]bool, maxArraySize)
-	//fmt.Println("Smaller Array has: ", maxArraySize, " Smaller Array has:  ", boundary)
-	for index := 0; index < boundary; index++ {
-		if arrA[index] && arrB[index] == true {
-			collisionArray[index] = true
+
+	for i := range arrA {
+		if arrA[i] && arrB[i] == true {
+			collisionArray[i] = true
 		}
 	}
+	fmt.Println("arrA", arrA)
+	fmt.Println("arrB", arrB)
+
+	fmt.Println(collisionArray)
 	intervals := getIntervals(collisionArray)
 	fmt.Println(intervals)
+
 	return intervals
 }
 
-func generateBooleanArray(arr1 [][]int) []bool {
-	arrLen := arr1[len(arr1)-1][1]
-	ArrayOfLenOfArr1 := make([]bool, arrLen)
+func generateBooleanArray(arr1 [][]int, maxSize int) []bool {
+	arrLen := maxSize
+	ArrayOfLenOfArr1 := make([]bool, arrLen+1)
 
-	for index := range arr1 {
-		beginning := arr1[index][0]
-		end := arr1[index][1]
-		if beginning == arrLen-1 {
-			break
-		}
-		for ; beginning <= end; beginning++ {
-			ArrayOfLenOfArr1[beginning] = true
+	for _, j := range arr1 {
+		upperBound := j[1]
+		lowerBound := j[0]
+		for lowerBound <= upperBound {
+			fmt.Println("Lower: ", lowerBound, "\tUpper: ", upperBound)
+			ArrayOfLenOfArr1[lowerBound] = true
+			lowerBound++
 		}
 	}
 	return ArrayOfLenOfArr1
 }
 
-func getMaxAndMin(ArrayOfLenOfArr1 []bool, ArrayOfLenOfArr2 []bool) (int, int) {
-	max1 := len(ArrayOfLenOfArr1) - 1
-	max2 := len(ArrayOfLenOfArr2) - 1
-	if max1 > max2 {
-		return max1, max2
+func getMaxArraySize(Array1 [][]int, Array2 [][]int) int {
+	indexArr1 := len(Array1) - 1
+	indexArr2 := len(Array2) - 1
+
+	maxValArray1 := Array1[indexArr1][1]
+	maxValArray2 := Array2[indexArr2][1]
+	if maxValArray1 > maxValArray2 {
+		return maxValArray1
 	} else {
-		return max2, max1
+		return maxValArray2
 	}
 }
 
@@ -59,7 +62,6 @@ func getIntervals(ca []bool) [][]int {
 	var started bool
 
 	for index := 0; index < len(ca); index++ {
-		//fmt.Println(index, ca[index])
 		if !started && ca[index] {
 			started = true
 			beginInterval = index
@@ -80,6 +82,6 @@ func Main23() {
 	intervalA := [][]int{{0, 2}, {5, 10}, {13, 23}, {24, 25}}
 	intervalB := [][]int{{1, 5}, {8, 12}, {15, 24}, {25, 26}}
 
-	output := intervalIntersection(intervalA, intervalB)
+	output := iis(intervalA, intervalB)
 	fmt.Println(output)
 }
