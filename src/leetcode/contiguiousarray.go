@@ -28,40 +28,9 @@ import (
 	"fmt"
 )
 
-func findMaxLength(nums []int) int {
-	arrayBound := len(nums) - 1
-	countList := []int{}
-	counter := 0
-
-	if arrayBound == 1 {
-		if nums[0] == nums[1] {
-			return 0
-		} else {
-			return 2
-		}
-	}
-	for index, val := range nums {
-		if index == arrayBound {
-			break
-		} else {
-			if val != nums[index+1] {
-				counter++
-			} else {
-				//countList = append(countList, counter)
-				countList = append(countList, counter)
-				counter = 0
-			}
-		}
-	}
-
-	//sort.Ints(countList)
-	max, _ := MinMax(countList)
-	return max
-}
-
-func MinMax(array []int) (int, int) {
-	var max int = array[0]
-	var min int = array[0]
+func minmax(array []int) (int, int) {
+	var max = array[0]
+	var min = array[0]
 	for _, value := range array {
 		if max < value {
 			max = value
@@ -85,7 +54,7 @@ func transformArray(nums []int) []int {
 	return retarr
 }
 
-func altApproach(nums []int) int {
+func findMaxLength(nums []int) int {
 	arrayBound := len(nums) - 1
 	countList := []int{}
 	counter := 0
@@ -109,20 +78,20 @@ func altApproach(nums []int) int {
 		}
 	}
 	countList = append(countList, counter)
-	fmt.Println(countList)
-	return countList[0]
+	_, largestSubValue := minmax(countList)
+	return largestSubValue
 }
 
 func FindMaxLength(nums []int) {
 	example1 := []int{0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0}
-	//example3 := altApproach(example2)
-	//fmt.Println(example3)
+	output1 := findMaxLength(example1)
+	fmt.Println(output1)
 
-	output2 := altApproach(example1)
+	example2 := []int{0, 1}
+	output2 := findMaxLength(example2)
 	fmt.Println(output2)
-	//output1, output2 := findMaxLength(example1), findMaxLength(example3)
-	//output3 := findMaxLength(example2)
 
-	//fmt.Println(output1, "\n", output2, "\n", output3)
-
+	example3 := []int{0, 1, 0}
+	output3 := findMaxLength(example3)
+	fmt.Println(output3)
 }
