@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	leetcode.FindMaxLen()
+	leetcode.PossiblePartition()
 }
