@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	leetcode.FindMaxLength([]int{0, 1, 0})
+	leetcode.FindMaxLen()
 }
